@@ -23,7 +23,7 @@ import {Subscription, filter, startWith} from 'rxjs';
 import {Job} from 'app/models/job.model';
 import {Survey} from 'app/models/survey.model';
 import {DraftSurveyService} from 'app/services/draft-survey/draft-survey.service';
-import {JobService} from 'app/services/job/job.service';
+import {JobService, JobDefaultColors} from 'app/services/job/job.service';
 import {NavigationService} from 'app/services/navigation/navigation.service';
 import {SurveyService} from 'app/services/survey/survey.service';
 import {environment} from 'environments/environment';
@@ -47,6 +47,7 @@ export class EditSurveyComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   production = !!(environment as any)['production'];
   sectionTitle?: string = '';
+  colorOptions = Object.values(JobDefaultColors);
 
   constructor(
     public dialog: MatDialog,
@@ -104,6 +105,10 @@ export class EditSurveyComponent implements OnInit {
   onMenu(e: Event): void {
     e.preventDefault();
     e.stopImmediatePropagation();
+  }
+
+  setJobColor(job: Job, color: string) {
+    this.draftSurveyService.addOrUpdateJob(job.copyWith({color}));
   }
 
   renameJob(job: Job): void {

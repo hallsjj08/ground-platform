@@ -101,6 +101,14 @@
         <mat-menu #menu>
           <button
             mat-menu-item
+            id="menu-button-{{ i }}"
+            [matMenuTriggerFor]="color"
+          >
+            Job Color
+          </button>
+          <mat-divider></mat-divider>
+          <button
+            mat-menu-item
             id="rename-button-{{ i }}"
             (click)="renameJob(job)"
           >
@@ -121,6 +129,23 @@
           >
             Remove
           </button>
+        </mat-menu>
+
+        <mat-menu #color>
+          <button 
+            mat-mini-fab 
+            class="job-color-options"
+            *ngFor="let colorOption of colorOptions" 
+            [ngStyle]="{backgroundColor: colorOption}"
+            value="colorOption"
+            (click)="setJobColor(job, colorOption)"
+          >
+            <mat-icon 
+              [style.visibility]="job.color === colorOption ? 'visible' : 'hidden'"
+            >
+              check
+            </mat-icon>
+        </button>
         </mat-menu>
       </a>
     </mat-nav-list>

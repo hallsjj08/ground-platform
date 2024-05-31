@@ -25,7 +25,7 @@ import {Task, TaskType} from 'app/models/task/task.model';
 import {DataStoreService} from 'app/services/data-store/data-store.service';
 import {SurveyService} from 'app/services/survey/survey.service';
 
-enum JobDefaultColors {
+export enum JobDefaultColors {
   ORANGE = '#F37C22',
   BLUE = '#2278CF',
   YELLOW = '#F9BF40',
